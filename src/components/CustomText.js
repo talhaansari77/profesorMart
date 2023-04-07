@@ -3,6 +3,7 @@ import React from 'react';
 import {verticalScale, scale, moderateScale} from 'react-native-size-matters';
 // import colors from '../../Utils/colors';
 import { colors } from '../utils/Colors';
+import { Roboto } from '../utils/Fonts';
 function CustomText(props) {
   return (
     <TouchableOpacity
@@ -13,6 +14,7 @@ function CustomText(props) {
         props.container,
         {
           width: props.width,
+          alignSelf:props.mainSelf,
         },
       ]}>
       <Text
@@ -31,7 +33,7 @@ function CustomText(props) {
             fontWeight: props.fontWeight,
             marginHorizontal:props.marginHorizontal,
             fontStyle: props.fontStyle,
-            fontFamily: props.fontFamily,
+            fontFamily: props.fontFamily || Roboto.Regular300,
             numberOfLines: props.numberOfLines,
             ellipsizeMode: props.ellipsizeMode,
             marginVertical: verticalScale(props.marginVertical || 0),

@@ -1,12 +1,11 @@
 import React from 'react';
-import { TouchableOpacity, Text, StyleSheet, View, ActivityIndicator, Platform } from 'react-native';
-// import { Ionicons } from "@expo/vector-icons";
+import { TouchableOpacity, Text, StyleSheet, View, ActivityIndicator } from 'react-native';
 import { ScaledSheet, verticalScale, scale, moderateScale } from 'react-native-size-matters';
+import LinearGradient from 'react-native-linear-gradient';
 
-// import { ActivityIndicator } from "react-native-paper";
 import { colors } from '../utils/Colors';
-import { Montserrat, Roboto } from '../utils/Fonts';
-function CustomButton({
+import { InterFont, Roboto } from '../utils/Fonts';
+function GradientButton({
   loading,
   title,
   onPress,
@@ -32,47 +31,40 @@ function CustomButton({
       activeOpacity={0.6}
       style={[
         {
-          backgroundColor: backgroundColor || colors.primary,
+        //   backgroundColor: backgroundColor || colors.primary,
           width: width || '100%',
-          height: height || verticalScale(45),
-          borderRadius: borderRadius || 10,
+          height: height || verticalScale(50),
+          borderRadius: borderRadius || scale(10),
           alignItems: alignItems || 'center',
+          overflow:"hidden",
           justifyContent: justifyContent || 'center',
-          borderWidth:borderWidth,
-          borderColor:borderColor,
           marginTop,
           marginBottom:marginBottom,
-          marginHorizontal:marginHorizontal,
-          shadowColor:
-       Platform.OS == 'ios'
-            ? colors.inputGray
-            : colors.black,
-        shadowRadius: 5,
-        elevation: 3,
-        shadowOpacity: 0.2,
-        // inputMarginTop:-20,
-        shadowOffset: {width: 1, height: 1},
+          marginHorizontal:marginHorizontal
         },
       ]}
       onPress={onPress}
     >
       {loading ? (
-        <ActivityIndicator color={colors.white} size={moderateScale(26)} />
+        <ActivityIndicator 
+        color={colors.white} size={moderateScale(26)} />
       ) : (
-        <View style={{ flexDirection: 'row' }}>
+        <LinearGradient 
+        colors={["#3B2329", colors.pink1, "#C96A70"]}
+        style={{ flexDirection: 'row' ,width:"100%",height:"100%",alignItems:"center",justifyContent:"center"}}>
           <Text
             style={[
               {
                 color: color || colors.white,
                 fontSize: verticalScale(fontSize|| 15),
-                fontWeight:"600",
+                fontWeight:"700",
                 fontFamily: fontFamily || Roboto.BlackBold
               },
             ]}
           >
             {title}
           </Text>
-        </View>
+        </LinearGradient>
       )}
     </TouchableOpacity>
   );
@@ -84,4 +76,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CustomButton;
+export default GradientButton;
